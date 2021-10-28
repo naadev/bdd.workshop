@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bdd.workshop.calculator.con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bdd.workshop.calculator.web", "bdd.workshop.calculator.web\bdd.workshop.calculator.web.csproj", "{C694AF33-B7B3-4C90-9D9D-D17E8D930271}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{5BAE8444-7126-4270-98AD-16BE8663E5FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bdd.workshop.calculator.tests.xunit", "bdd.workshop.calculator.tests.xunit\bdd.workshop.calculator.tests.xunit.csproj", "{C142C8F7-1CBA-40F6-A482-2EB97107966C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C142C8F7-1CBA-40F6-A482-2EB97107966C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C142C8F7-1CBA-40F6-A482-2EB97107966C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C142C8F7-1CBA-40F6-A482-2EB97107966C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C142C8F7-1CBA-40F6-A482-2EB97107966C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C142C8F7-1CBA-40F6-A482-2EB97107966C} = {5BAE8444-7126-4270-98AD-16BE8663E5FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78105378-371B-4D41-9D8A-CCB6C6F2FF30}
