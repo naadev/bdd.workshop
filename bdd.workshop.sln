@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bdd.workshop.calculator", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bdd.workshop.calculator.console", "bdd.workshop.calculator.console\bdd.workshop.calculator.console.csproj", "{7838C9FC-12E0-44F8-A246-0DE3EEB29814}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bdd.workshop.calculator.web", "bdd.workshop.calculator.web\bdd.workshop.calculator.web.csproj", "{C694AF33-B7B3-4C90-9D9D-D17E8D930271}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7838C9FC-12E0-44F8-A246-0DE3EEB29814}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7838C9FC-12E0-44F8-A246-0DE3EEB29814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7838C9FC-12E0-44F8-A246-0DE3EEB29814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C694AF33-B7B3-4C90-9D9D-D17E8D930271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
