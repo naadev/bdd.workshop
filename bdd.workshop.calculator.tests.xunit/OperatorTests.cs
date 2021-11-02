@@ -23,15 +23,24 @@ namespace bdd.workshop.calculator.tests.xunit
             double result = 40;
             Assert.True(Operator.Multiply(a, b) == result);
         }
-        [Fact]
-        [Trait("TestType", "UT")]
-        public void BasicDivide()
+
+        [Theory(DisplayName ="Division Theory")]
+        [Trait("TestType", "Theory")]
+        [InlineData(20, 4, 5)]
+        [InlineData(10, 4, 2.5)]
+        public void DivisionTheory(int a, int b, double result)
         {
-            int a = 20;
-            int b = 4;
-            double result = 5;
             Assert.True(Operator.Divide(a, b) == result);
         }
+        //[Fact]
+        //[Trait("TestType", "UT")]
+        //public void BasicDivide()
+        //{
+        //    int a = 20;
+        //    int b = 4;
+        //    double result = 5;
+        //    Assert.True(Operator.Divide(a, b) == result);
+        //}
 
         [Fact]
         [Trait("TestType", "UT")]
@@ -42,14 +51,14 @@ namespace bdd.workshop.calculator.tests.xunit
             double result = 16;
             Assert.True(Operator.Substract(a, b) == result);
         }
-        [Fact]
-        [Trait("TestType","NRT")]
-        public void DividingNonIntegerResult()
-        {
-            int a = 10;
-            int b = 4;
-            double result = 2.5;
-            Assert.True(Operator.Divide(a, b) == result);
-        }
+        //[Fact]
+        //[Trait("TestType","NRT")]
+        //public void DividingNonIntegerResult()
+        //{
+        //    int a = 10;
+        //    int b = 4;
+        //    double result = 2.5;
+        //    Assert.True(Operator.Divide(a, b) == result);
+        //}
     }
 }
