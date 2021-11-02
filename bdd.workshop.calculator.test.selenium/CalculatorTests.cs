@@ -6,8 +6,40 @@ using Xunit;
 
 namespace bdd.workshop.calculator.test.selenium
 {
-    public class CalculatorTests
+    public class CalculatorTests : IDisposable
     {
+        IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
+
+        public void Dispose()
+        {
+            driver.Close();
+        }
+        private void EvaluateOperation(int a, int b, string operation, double result)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            var aXpath = "//input[@id='A']";
+            var bXpath = "//input[@id='B']";
+            var cmdXpath = "//input[@id='Command']";
+            var submitButton = "//input[@type='submit']";
+            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            var inputA = FindElement(aXpath, wait);
+            var inputCmd = FindElement(cmdXpath, wait);
+            var inputB = FindElement(bXpath, wait);
+            var button = FindElement(submitButton, wait);
+            inputA.SendKeys(a.ToString());
+            inputCmd.SendKeys(operation);
+            inputB.SendKeys(b.ToString());
+            button.Click();
+            var theResult = "//td[@id='theResult']";
+            var outputResultString = FindElement(theResult, wait).Text;
+            Assert.True(double.TryParse(outputResultString, out double outputResult));
+            Assert.True(result == outputResult);
+        }
+        IWebElement FindElement(string xpath, WebDriverWait wait)
+        {
+            wait.Until(driver => driver.FindElement(By.XPath(xpath)));
+            return driver.FindElement(By.XPath(xpath));
+        }
 
         [Fact]
         [Trait("TestType", "FT")]
@@ -17,30 +49,7 @@ namespace bdd.workshop.calculator.test.selenium
             int b = 2;
             double result = 3;
             string operation = "+";
-            using IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A']";
-            var bXpath = "//input[@id='B']";
-            var cmdXpath = "//input[@id='Command']";
-            var submitButton = "//input[@type='submit']";
-            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
-            wait.Until(driver => driver.FindElement(By.XPath(aXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(bXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(cmdXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(submitButton)));
-            var inputA = driver.FindElement(By.XPath(aXpath));
-            var inputCmd = driver.FindElement(By.XPath(cmdXpath));
-            var inputB = driver.FindElement(By.XPath(bXpath));
-            var button = driver.FindElement(By.XPath(submitButton));
-            inputA.SendKeys(a.ToString());
-            inputCmd.SendKeys(operation);
-            inputB.SendKeys(b.ToString());
-            button.Click();
-            var theResult = "//td[@id='theResult']";
-            wait.Until(driver => driver.FindElement(By.XPath(theResult)));
-            var outputResultString = driver.FindElement(By.XPath(theResult)).Text;
-            Assert.True(double.TryParse(outputResultString, out double outputResult));
-            Assert.True(result == outputResult);
+            EvaluateOperation(a, b, operation, result);
         }
         [Fact]
         [Trait("TestType", "FT")]
@@ -50,30 +59,7 @@ namespace bdd.workshop.calculator.test.selenium
             int b = 4;
             double result = 40;
             string operation = "x";
-            using IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A']";
-            var bXpath = "//input[@id='B']";
-            var cmdXpath = "//input[@id='Command']";
-            var submitButton = "//input[@type='submit']";
-            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
-            wait.Until(driver => driver.FindElement(By.XPath(aXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(bXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(cmdXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(submitButton)));
-            var inputA = driver.FindElement(By.XPath(aXpath));
-            var inputCmd = driver.FindElement(By.XPath(cmdXpath));
-            var inputB = driver.FindElement(By.XPath(bXpath));
-            var button = driver.FindElement(By.XPath(submitButton));
-            inputA.SendKeys(a.ToString());
-            inputCmd.SendKeys(operation);
-            inputB.SendKeys(b.ToString());
-            button.Click();
-            var theResult = "//td[@id='theResult']";
-            wait.Until(driver => driver.FindElement(By.XPath(theResult)));
-            var outputResultString = driver.FindElement(By.XPath(theResult)).Text;
-            Assert.True(double.TryParse(outputResultString, out double outputResult));
-            Assert.True(result == outputResult);
+            EvaluateOperation(a, b, operation, result);
         }
         [Fact]
         [Trait("TestType", "FT")]
@@ -83,30 +69,7 @@ namespace bdd.workshop.calculator.test.selenium
             int b = 4;
             double result = 5;
             string operation = "/";
-            using IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A']";
-            var bXpath = "//input[@id='B']";
-            var cmdXpath = "//input[@id='Command']";
-            var submitButton = "//input[@type='submit']";
-            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
-            wait.Until(driver => driver.FindElement(By.XPath(aXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(bXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(cmdXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(submitButton)));
-            var inputA = driver.FindElement(By.XPath(aXpath));
-            var inputCmd = driver.FindElement(By.XPath(cmdXpath));
-            var inputB = driver.FindElement(By.XPath(bXpath));
-            var button = driver.FindElement(By.XPath(submitButton));
-            inputA.SendKeys(a.ToString());
-            inputCmd.SendKeys(operation);
-            inputB.SendKeys(b.ToString());
-            button.Click();
-            var theResult = "//td[@id='theResult']";
-            wait.Until(driver => driver.FindElement(By.XPath(theResult)));
-            var outputResultString = driver.FindElement(By.XPath(theResult)).Text;
-            Assert.True(double.TryParse(outputResultString, out double outputResult));
-            Assert.True(result == outputResult);
+            EvaluateOperation(a, b, operation, result);
         }
 
         [Fact]
@@ -117,30 +80,7 @@ namespace bdd.workshop.calculator.test.selenium
             int b = 4;
             double result = 16;
             string operation = "-";
-            using IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A']";
-            var bXpath = "//input[@id='B']";
-            var cmdXpath = "//input[@id='Command']";
-            var submitButton = "//input[@type='submit']";
-            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
-            wait.Until(driver => driver.FindElement(By.XPath(aXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(bXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(cmdXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(submitButton)));
-            var inputA = driver.FindElement(By.XPath(aXpath));
-            var inputCmd = driver.FindElement(By.XPath(cmdXpath));
-            var inputB = driver.FindElement(By.XPath(bXpath));
-            var button = driver.FindElement(By.XPath(submitButton));
-            inputA.SendKeys(a.ToString());
-            inputCmd.SendKeys(operation);
-            inputB.SendKeys(b.ToString());
-            button.Click();
-            var theResult = "//td[@id='theResult']";
-            wait.Until(driver => driver.FindElement(By.XPath(theResult)));
-            var outputResultString = driver.FindElement(By.XPath(theResult)).Text;
-            Assert.True(double.TryParse(outputResultString, out double outputResult));
-            Assert.True(result == outputResult);
+            EvaluateOperation(a, b, operation, result);
         }
         [Fact]
         [Trait("TestType", "FT")]
@@ -150,31 +90,7 @@ namespace bdd.workshop.calculator.test.selenium
             int b = 4;
             double result = 2.5;
             string operation = "/";
-            using IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A']";
-            var bXpath = "//input[@id='B']";
-            var cmdXpath = "//input[@id='Command']";
-            var submitButton = "//input[@type='submit']";
-            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
-            wait.Until(driver => driver.FindElement(By.XPath(aXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(bXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(cmdXpath)));
-            wait.Until(driver => driver.FindElement(By.XPath(submitButton)));
-            var inputA = driver.FindElement(By.XPath(aXpath));
-            var inputCmd = driver.FindElement(By.XPath(cmdXpath));
-            var inputB = driver.FindElement(By.XPath(bXpath));
-            var button = driver.FindElement(By.XPath(submitButton));
-            inputA.SendKeys(a.ToString());
-            inputCmd.SendKeys(operation);
-            inputB.SendKeys(b.ToString());
-            button.Click();
-            var theResult = "//td[@id='theResult']";
-            wait.Until(driver => driver.FindElement(By.XPath(theResult)));
-            var outputResultString = driver.FindElement(By.XPath(theResult)).Text;
-            Assert.True(double.TryParse(outputResultString, out double outputResult));
-            Assert.True(result == outputResult);
-            //Assert.True(Operator.Divide(a, b) == result);
+            EvaluateOperation(a, b, operation, result);
         }
     }
 }
