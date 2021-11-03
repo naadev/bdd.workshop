@@ -68,6 +68,13 @@ namespace bdd.workshop.calculator.tests.xunit
         [InlineData(2, PrimeNumberInfo.Yes)]
         [InlineData(3, PrimeNumberInfo.Yes)]
         [InlineData(4, PrimeNumberInfo.No)]
+        [InlineData(5, PrimeNumberInfo.Yes)]
+        [InlineData(6, PrimeNumberInfo.No)]
+        [InlineData(7, PrimeNumberInfo.Yes)]
+        [InlineData(8, PrimeNumberInfo.No)]
+        [InlineData(9, PrimeNumberInfo.No)]
+        [InlineData(10, PrimeNumberInfo.No)]
+        [InlineData(11, PrimeNumberInfo.Yes)]
         public void IsThisNumberPrime(int number,PrimeNumberInfo isPrimeNumber)
         {
             Assert.True(isPrimeNumber == Operator.IsPrimeNumber(number) );
