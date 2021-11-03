@@ -6,22 +6,16 @@ using Xunit;
 
 namespace bdd.workshop.calculator.test.selenium
 {
-    public class CalculatorTests : IDisposable
+    public class CalculatorTests : WebBrowser
     {
-        IWebDriver driver = new ChromeDriver("C:\\CommonExePath\\");
-
-        public void Dispose()
-        {
-            driver.Close();
-        }
         private void EvaluateOperation(int a, int b, string operation, double result)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A']";
-            var bXpath = "//input[@id='B']";
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            var aXpath = "//input[@id='A_TheNumber']";
+            var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -35,11 +29,7 @@ namespace bdd.workshop.calculator.test.selenium
             Assert.True(double.TryParse(outputResultString, out double outputResult));
             Assert.True(result == outputResult);
         }
-        IWebElement FindElement(string xpath, WebDriverWait wait)
-        {
-            wait.Until(driver => driver.FindElement(By.XPath(xpath)));
-            return driver.FindElement(By.XPath(xpath));
-        }
+
         [Theory(DisplayName ="Operations Theory")]
         [Trait("TestType", "Functional Theories")]
         [InlineData(1, "+", 2, 3)]

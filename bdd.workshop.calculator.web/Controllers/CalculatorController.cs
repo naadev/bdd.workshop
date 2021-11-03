@@ -22,16 +22,16 @@ namespace bdd.workshop.calculator.web.Controllers
             switch (calculator.Command)
             {
                 case ("+"):
-                    ViewData["result"] = Operator.Add(calculator.A, calculator.B);
+                    ViewData["result"] = Operator.Add(calculator.A.TheNumber, calculator.B.TheNumber);
                     break;
                 case ("-"):
-                    ViewData["result"] = Operator.Substract(calculator.A, calculator.B);
+                    ViewData["result"] = Operator.Substract(calculator.A.TheNumber, calculator.B.TheNumber);
                     break;
                 case ("x"):
-                    ViewData["result"] = Operator.Multiply(calculator.A, calculator.B);
+                    ViewData["result"] = Operator.Multiply(calculator.A.TheNumber, calculator.B.TheNumber);
                     break;
                 case ("/"):
-                    ViewData["result"] = Operator.Divide(calculator.A, calculator.B);
+                    ViewData["result"] = Operator.Divide(calculator.A.TheNumber, calculator.B.TheNumber);
                     break;
                 default:
 
