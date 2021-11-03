@@ -15,7 +15,10 @@ namespace bdd.workshop.calculator.test.selenium
         [Theory(DisplayName = "Number Properties Prime Number Theory")]
         [Trait("TestType", "Functional Theories")]
         [InlineData(13, true, false, false)]
+        [InlineData(86743, true, false, false)]
         [InlineData(1, false, true, false)]
+        [InlineData(8, false, true, false)]
+        [InlineData(369, false, true, false)]
         [InlineData(0, false, false, true)]
         public void PrimeNumberTest(int number,bool isPrime,bool isNotPrime, bool isUndefined)
         {
