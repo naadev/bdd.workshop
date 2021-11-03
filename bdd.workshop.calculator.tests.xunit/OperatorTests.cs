@@ -63,7 +63,8 @@ namespace bdd.workshop.calculator.tests.xunit
 
         [Theory(DisplayName ="Prime Number Theory")]
         [Trait("TestType","Theory")]
-        [InlineData(0,PrimeNumberInfo.Unknown)]
+        [InlineData(0, PrimeNumberInfo.Unknown)]
+        [InlineData(1, PrimeNumberInfo.No)]
         public void IsThisNumberPrime(int number,PrimeNumberInfo isPrimeNumber)
         {
             Assert.True(isPrimeNumber == Operator.IsPrimeNumber(number) );
