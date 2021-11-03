@@ -60,5 +60,13 @@ namespace bdd.workshop.calculator.tests.xunit
         //    double result = 2.5;
         //    Assert.True(Operator.Divide(a, b) == result);
         //}
+
+        [Theory(DisplayName ="Prime Number Theory")]
+        [Trait("TestType","Theory")]
+        [InlineData(0,PrimeNumberInfo.Unknown)]
+        public void IsThisNumberPrime(int number,PrimeNumberInfo isPrimeNumber)
+        {
+            Assert.True(isPrimeNumber == Operator.IsPrimeNumber(number) );
+        }
     }
 }

@@ -31,5 +31,9 @@ namespace bdd.workshop.calculator
 
         public static int Substract(int a, int b) => a - b;
 
+        public static PrimeNumberInfo IsPrimeNumber(int number)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
