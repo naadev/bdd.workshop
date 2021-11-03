@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace bdd.workshop.calculator
@@ -33,25 +34,17 @@ namespace bdd.workshop.calculator
 
         public static PrimeNumberInfo IsPrimeNumber(int number)
         {
-            if (number == 0)
+            var result = PrimeNumberInfo.Unknown;
+            for (int i = 2; i < number; i++)
             {
-                return PrimeNumberInfo.Unknown;
-            }
-            if (number == 1)
-            {
-                return PrimeNumberInfo.No;
-            }
-            else
-            {
-                for (int i=2;i<number;i++)
+                result = PrimeNumberInfo.Yes;
+                if (number % i == 0)
                 {
-                    if (number%i == 0)
-                    {
-                        return PrimeNumberInfo.No;
-                    }
+                    result = PrimeNumberInfo.No;
+                    break;
                 }
-                return PrimeNumberInfo.Yes;
             }
+            return result;
         }
     }
 }
