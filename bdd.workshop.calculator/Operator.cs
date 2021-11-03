@@ -33,7 +33,7 @@ namespace bdd.workshop.calculator
 
         public static PrimeNumberInfo IsPrimeNumber(int number)
         {
-            return PrimeNumberInfo.Unknown;
+            return number == 0 ? PrimeNumberInfo.Unknown : PrimeNumberInfo.No;
         }
     }
 }
