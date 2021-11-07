@@ -29,8 +29,10 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             button.Click();
             var theResult = "//td[@id='theResult']";
             var outputResultString = FindElement(theResult, wait).Text;
+
             return double.Parse(outputResultString);
         }
+
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext _scenarioContext;
@@ -96,6 +98,22 @@ namespace bdd.workshop.calculator.tests.selenium.steps
         {
             Assert.True(result == _scenarioContext.Get<double>("Result"));
         }
-
+        private void EvaluateNumberBox(int expectedNumber, string numberXPath)
+        {
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            var textInBox = FindElement(numberXPath, wait).Text;
+            Assert.True(int.TryParse(textInBox, out int numberInBox), $"{textInBox} is not an integer");
+            Assert.True(numberInBox == expectedNumber);
+        }
+        [Then(@"displayed first name is (.*)")]
+        public void ThenDisplayedFirstNameIs(int firstNumber)
+        {
+            EvaluateNumberBox(firstNumber, "//td[@id='theA']");
+        }
+        [Then(@"displayed second name is (.*)")]
+        public void ThenDisplayedSecondNameIs(int secondNumber)
+        {
+            EvaluateNumberBox(secondNumber, "//td[@id='theB']");
+        }
     }
 }
