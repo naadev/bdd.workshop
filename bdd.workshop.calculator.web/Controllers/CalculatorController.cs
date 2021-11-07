@@ -16,8 +16,8 @@ namespace bdd.workshop.calculator.web.Controllers
         [HttpPost]
         public IActionResult Operate(Models.Calculator calculator)
         {
-            ViewData["a"] = calculator.A;
-            ViewData["b"] = calculator.B;
+            ViewData["a"] = calculator.A.TheNumber;
+            ViewData["b"] = calculator.B.TheNumber;
             ViewData["operation"] = calculator.Command;
             switch (calculator.Command)
             {
