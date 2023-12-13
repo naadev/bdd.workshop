@@ -11,6 +11,9 @@ namespace bdd.workshop.calculator.console
             Operator.CommandManager(command, out int a, out int b, out string operation);
             switch (operation)
             {
+                case ("sqrt"):
+                    Console.WriteLine(Operator.Sqrt(a));
+                    break;
                 case ("+"):
                     Console.WriteLine(Operator.Add(a, b));
                     break;

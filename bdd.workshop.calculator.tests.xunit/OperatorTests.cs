@@ -16,6 +16,14 @@ namespace bdd.workshop.calculator.tests.xunit
         }
         [Fact]
         [Trait("TestType", "UT")]
+        public void BasicSqrt()
+        {
+            int a = 16;
+            double result = 4;
+            Assert.True(Operator.Sqrt(a) == result);
+        }
+        [Fact]
+        [Trait("TestType", "UT")]
         public void BasicMultiply()
         {
             int a = 10;
