@@ -32,8 +32,7 @@ namespace bdd.workshop.calculator
 
         public static int Substract(int a, int b) => a - b;
 
-        // Operation Square Root of a given number a
-        public static double SquareRoot(int a) => Math.Sqrt(a);
+        
 
         public static PrimeNumberInfo IsPrimeNumber(int number)
         {
