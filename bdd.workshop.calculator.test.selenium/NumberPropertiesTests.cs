@@ -1,11 +1,5 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace bdd.workshop.calculator.test.selenium
@@ -20,12 +14,12 @@ namespace bdd.workshop.calculator.test.selenium
         [InlineData(8, false, true, false)]
         [InlineData(369, false, true, false)]
         [InlineData(0, false, false, true)]
-        public void PrimeNumberTest(int number,bool isPrime,bool isNotPrime, bool isUndefined)
+        public void PrimeNumberTest(int number, bool isPrime, bool isNotPrime, bool isUndefined)
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             var numberXPath = @"//input[@id='TheNumber']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/NumberProperties";
+            Driver.Url = "https://bddworkshopcalculatorweb20231215120059.azurewebsites.net/NumberProperties";
             var inputA = FindElement(numberXPath, wait);
             var button = FindElement(submitButton, wait);
             inputA.SendKeys(number.ToString());

@@ -1,8 +1,5 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 using Xunit;
 
@@ -18,7 +15,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            Driver.Url = "https://bddworkshopcalculatorweb20231215120059.azurewebsites.net/Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -73,7 +70,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
         {
             var firstNumber = _scenarioContext.Get<int>("FirstNumber");
             var secondNumber = _scenarioContext.Get<int>("SecondNumber");
-            _scenarioContext.Add("Result",EvaluateOperation(firstNumber, secondNumber, "-"));
+            _scenarioContext.Add("Result", EvaluateOperation(firstNumber, secondNumber, "-"));
         }
 
         [When(@"I multiply both numbers")]

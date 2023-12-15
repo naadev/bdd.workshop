@@ -21,13 +21,13 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var wait = _scenarioContext.Get<WebDriverWait>("Wait");
             var numberXPath = @"//input[@id='TheNumber']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/NumberProperties";
+            Driver.Url = "https://bddworkshopcalculatorweb20231215120059.azurewebsites.net/NumberProperties";
             var inputA = FindElement(numberXPath, wait);
             var button = FindElement(submitButton, wait);
             inputA.SendKeys(number.ToString());
             button.Click();
         }
-        
+
         [Then(@"the answer to know whether is prime or not is (.*)")]
         public void ThenTheAnswerToKnowWhetherIsPrimeOrNotIsUnknown(string primeNumberInfo)
         {
