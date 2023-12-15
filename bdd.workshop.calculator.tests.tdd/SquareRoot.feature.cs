@@ -41,7 +41,7 @@ namespace bdd.workshop.calculator.tests.tdd
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "SquareRoot", "\tAs Alice (the customer)\r\n\tI want to get the square root from a number\r\n\tSo I can" +
-                    " solve the Pythagorean theorem", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    " draw spheres in 3D space and solve quadratic equations", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -116,7 +116,59 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the square root from the number is taken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("the square root of the number should be 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result of square root operation should be 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Taking several square roots")]
+        [Xunit.TraitAttribute("FeatureTitle", "SquareRoot")]
+        [Xunit.TraitAttribute("Description", "Taking several square roots")]
+        [Xunit.InlineDataAttribute("-1", "NaN", new string[0])]
+        [Xunit.InlineDataAttribute("0", "0", new string[0])]
+        [Xunit.InlineDataAttribute("1", "1", new string[0])]
+        [Xunit.InlineDataAttribute("2", "1.4142135623730951", new string[0])]
+        [Xunit.InlineDataAttribute("3", "1.7320508075688772", new string[0])]
+        [Xunit.InlineDataAttribute("25", "5", new string[0])]
+        [Xunit.InlineDataAttribute("10000", "100", new string[0])]
+        [Xunit.InlineDataAttribute("10000.1", "100.00049999875", new string[0])]
+        [Xunit.InlineDataAttribute("1.7976931348623157E+308", "1.3407807929942596e+154", new string[0])]
+        [Xunit.InlineDataAttribute("-1.7976931348623157E+308", "NaN", new string[0])]
+        [Xunit.InlineDataAttribute("∞", "∞", new string[0])]
+        [Xunit.InlineDataAttribute("-∞", "NaN", new string[0])]
+        public virtual void TakingSeveralSquareRoots(string number, string result, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("number", number);
+            argumentsOfScenario.Add("result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Taking several square roots", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 11
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 12
+ testRunner.When(string.Format("the square root of a number {0} is taken", number), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then(string.Format("the result of square root operation should be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
