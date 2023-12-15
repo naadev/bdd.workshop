@@ -27,7 +27,7 @@ namespace bdd.workshop.calculator.console
                     Console.WriteLine(Operator.Divide(a, b));
                     break;
                 default:
-                    Console.WriteLine("Possible operators: +,-,x,/: i.e.: 3 + 4");
+                    Console.WriteLine("Possible operators: +,-,x,/,sqrt: i.e.: 3 + 4");
                     break;
             }
         }
