@@ -19,6 +19,7 @@ namespace bdd.workshop.calculator.test.selenium
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
+                options.AddArgument("--remote-debugging-port=9222");
                 Driver = new ChromeDriver(options);
             }
 
