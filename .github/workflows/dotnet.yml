@@ -19,7 +19,6 @@ jobs:
     - uses: nanasess/setup-chromedriver@v2
     - run: |
         export DISPLAY=:99
-        chromedriver --url-base=/wd/hub --whitelisted-ips="" &
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3

@@ -19,7 +19,7 @@ namespace bdd.workshop.calculator.tests.selenium
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                options.AddArgument("--remote-debugging-port=9222");
+                options.AddArgument("--whitelisted-ips=\"\"");
                 Driver = new ChromeDriver(options);
             }
 
