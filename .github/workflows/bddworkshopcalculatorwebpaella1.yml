@@ -46,13 +46,22 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.bddworkshopcalculatorwebpaella1_C8BD }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+  chromedriver:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: nanasess/setup-chromedriver@v2
+      with:
+        # Optional: do not specify to match Chrome's version
+        chromedriver-version: '88.0.4324.96'
+    - run: chromedriver --url-base=/wd/hub &
   selenium:
     runs-on: windows-latest
     needs: deploy
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+      
     - name: Test
       shell: pwsh
       run: dotnet test --configuration Release
