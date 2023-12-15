@@ -18,7 +18,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "http://localhost:8090/Calculator";
+            Driver.Url = (Environment.GetEnvironmentVariable("BDD_WORKSHOP_URL_PREFIX") ?? "https://bdd-workshop-the-calculator.azurewebsites.net") + "/Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
