@@ -28,7 +28,12 @@ namespace bdd.workshop.calculator
 
         public static int Multiply(int a, int b) => a * b;
 
-        public static double Divide(int a, int b) => ((double)a) / ((double)b);
+        public static double Divide(int a, int b) { if (b == 0)
+            {
+                throw new InvalidOperationException("Cannot divide by zero");
+            }
+            return ((double)a) / ((double)b);
+        }
 
         public static int Substract(int a, int b) => a - b;
 

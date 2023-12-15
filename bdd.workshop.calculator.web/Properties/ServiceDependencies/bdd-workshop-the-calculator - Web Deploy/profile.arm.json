@@ -78,12 +78,13 @@
                 "reserved": false,
                 "serverFarmId": "[variables('appServicePlan_ResourceId')]",
                 "siteConfig": {
-                  "metadata": [
-                    {
-                      "name": "CURRENT_STACK",
-                      "value": "dotnetcore"
-                    }
-                  ]
+                    "location": "[parameters('resourceLocation')]",
+                    "metadata": [
+                        {
+                            "name": "CURRENT_STACK",
+                            "value": "dotnetcore"
+                        }
+                    ]
                 }
               },
               "identity": {

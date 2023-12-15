@@ -2,6 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Globalization;
 using Xunit;
 
 namespace bdd.workshop.calculator.test.selenium
@@ -10,12 +11,14 @@ namespace bdd.workshop.calculator.test.selenium
     {
         private void EvaluateOperation(int a, int b, string operation, double result)
         {
+            
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             var aXpath = "//input[@id='A_TheNumber']";
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            var url = "http://localhost:4234/";
+            Driver.Url = $"{url}Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -26,7 +29,8 @@ namespace bdd.workshop.calculator.test.selenium
             button.Click();
             var theResult = "//td[@id='theResult']";
             var outputResultString = FindElement(theResult, wait).Text;
-            Assert.True(double.TryParse(outputResultString, out double outputResult));
+            outputResultString = outputResultString.Replace(',', '.');
+            Assert.True(double.TryParse(outputResultString, CultureInfo.InvariantCulture, out double outputResult));
             Assert.True(result == outputResult);
         }
 
@@ -41,57 +45,6 @@ namespace bdd.workshop.calculator.test.selenium
         {
             EvaluateOperation(a, b, operation, result);
         }
-        /// ***** COMMENTS ARE LEFT FOR COMPARISSON PURPOSES ONLY////
-        //[Fact]
-        //[Trait("TestType", "FT")]
-        //public void BasicAdd()
-        //{
-        //    int a = 1;
-        //    int b = 2;
-        //    double result = 3;
-        //    string operation = "+";
-        //    EvaluateOperation(a, b, operation, result);
-        //}
-        //[Fact]
-        //[Trait("TestType", "FT")]
-        //public void BasicMultiply()
-        //{
-        //    int a = 10;
-        //    int b = 4;
-        //    double result = 40;
-        //    string operation = "x";
-        //    EvaluateOperation(a, b, operation, result);
-        //}
-        //[Fact]
-        //[Trait("TestType", "FT")]
-        //public void BasicDivide()
-        //{
-        //    int a = 20;
-        //    int b = 4;
-        //    double result = 5;
-        //    string operation = "/";
-        //    EvaluateOperation(a, b, operation, result);
-        //}
-
-        //[Fact]
-        //[Trait("TestType", "FT")]
-        //public void BasicSubstract()
-        //{
-        //    int a = 20;
-        //    int b = 4;
-        //    double result = 16;
-        //    string operation = "-";
-        //    EvaluateOperation(a, b, operation, result);
-        //}
-        //[Fact]
-        //[Trait("TestType", "FT")]
-        //public void DividingNonIntegerResult()
-        //{
-        //    int a = 10;
-        //    int b = 4;
-        //    double result = 2.5;
-        //    string operation = "/";
-        //    EvaluateOperation(a, b, operation, result);
-        //}
+        
     }
 }

@@ -1,16 +1,20 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.CommonModels;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace bdd.workshop.calculator.tests.selenium.steps
 {
     [Binding]
     public sealed class Calculator : WebBrowser
     {
+        
         private double EvaluateOperation(int a, int b, string operation)
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
@@ -18,7 +22,8 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            var url = "http://localhost:4234/";
+            Driver.Url = $"{url}Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -29,17 +34,20 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             button.Click();
             var theResult = "//td[@id='theResult']";
             var outputResultString = FindElement(theResult, wait).Text;
-
-            return double.Parse(outputResultString);
+            outputResultString = outputResultString.Replace(',', '.');
+            Assert.True(double.TryParse(outputResultString, CultureInfo.InvariantCulture, out double outputResult));
+            return outputResult;
         }
 
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext _scenarioContext;
+        private readonly ITestOutputHelper _output;
 
-        public Calculator(ScenarioContext scenarioContext)
+        public Calculator(ScenarioContext scenarioContext, ITestOutputHelper output)
         {
             _scenarioContext = scenarioContext;
+            _output = output;
         }
         [Given(@"the first number is (.*)")]
         public void GivenTheFirstNumberIs(int firstNumber)
@@ -96,12 +104,15 @@ namespace bdd.workshop.calculator.tests.selenium.steps
         [Then(@"the result is (.*)")]
         public void ThenTheResultIs(double result)
         {
-            Assert.True(result == _scenarioContext.Get<double>("Result"));
+            var res = _scenarioContext.Get<double>("Result");
+        
+            Assert.True(result == res);
         }
         private void EvaluateNumberBox(int expectedNumber, string numberXPath)
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             var textInBox = FindElement(numberXPath, wait).Text;
+
             Assert.True(int.TryParse(textInBox, out int numberInBox), $"{textInBox} is not an integer");
             Assert.True(numberInBox == expectedNumber);
         }
