@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace bdd.workshop.calculator
 {
@@ -50,6 +51,14 @@ namespace bdd.workshop.calculator
                 }
             }
             return result;
+        }
+        public static double SquareRoot(double number)
+        {
+            if (number < 0)
+            {
+                throw new ArgumentException("El número no puede ser negativo para calcular la raíz cuadrada.");
+            }
+            return Math.Sqrt(number);
         }
     }
 }
