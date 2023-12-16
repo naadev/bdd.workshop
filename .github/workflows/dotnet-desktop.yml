@@ -31,11 +31,15 @@ jobs:
 
       # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
       - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v1.0.24
 
       # Execute all unit tests in the solution
-      - name: Execute unit tests
-        run: dotnet test
+      - name: Execute xunit tests
+        run: dotnet test --filter bdd.workshop.calculator.tests.xunit
+
+      # Execute all unit tests in the solution
+      - name: Execute tdd tests
+        run: dotnet test --filter bdd.workshop.calculator.tests.tdd
 
       # Restore the application to populate the obj folder with RuntimeIdentifiers
       - name: Restore the application
