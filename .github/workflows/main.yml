@@ -18,13 +18,14 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0'
-    - name: Install ChromeDriver
-      run: |
-        CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-        curl -o chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
-        unzip chromedriver.zip -d $HOME
-        chmod +x $HOME/chromedriver
-        echo "##[add-path]$HOME"
+    - uses: nanasess/setup-chromedriver@v2
+      with:
+        chromedriver-version: '88.0.4324.96'
+    - run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+
     - name: Restore dependencies
       run: dotnet restore
 
