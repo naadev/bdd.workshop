@@ -17,7 +17,7 @@ namespace bdd.workshop.calculator.test.selenium
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            var url = "http://localhost:4234/";
+            var url = "https://github.com/HHBetan/bdd.workshop.git";
             Driver.Url = $"{url}Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
