@@ -82,5 +82,14 @@ namespace bdd.workshop.calculator.tests.xunit
         {
             Assert.True(isPrimeNumber == Operator.IsPrimeNumber(number) );
         }
+
+        [Fact]
+        [Trait("TestType", "UT")]
+        public void BasicSquareRoot()
+        {
+            double a = 16;
+            double result = 4;
+            Assert.True(Operator.SquareRoot(a) == result);
+        }
     }
 }

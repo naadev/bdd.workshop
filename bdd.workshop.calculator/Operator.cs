@@ -46,5 +46,7 @@ namespace bdd.workshop.calculator
             }
             return result;
         }
+
+        public static double SquareRoot(double number) => Math.Sqrt(number);
     }
 }
