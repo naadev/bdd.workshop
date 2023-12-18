@@ -10,25 +10,37 @@ namespace bdd.workshop.calculator.test.selenium
     {
         private void EvaluateOperation(int a, int b, string operation, double result)
         {
+            const string calculatorUrl = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            var aXpath = "//input[@id='A_TheNumber']";
-            var bXpath = "//input[@id='B_TheNumber']";
-            var cmdXpath = "//input[@id='Command']";
-            var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
-            var inputA = FindElement(aXpath, wait);
-            var inputCmd = FindElement(cmdXpath, wait);
-            var inputB = FindElement(bXpath, wait);
-            var button = FindElement(submitButton, wait);
+
+            // Definir los XPaths
+            var inputAXpath = "//input[@id='A_TheNumber']";
+            var inputBXpath = "//input[@id='B_TheNumber']";
+            var inputCmdXpath = "//input[@id='Command']";
+            var submitButtonXpath = "//input[@type='submit']";
+            var theResultXpath = "//td[@id='theResult']";
+
+            // Navegar a la URL de la calculadora
+            Driver.Url = calculatorUrl;
+
+            // Encontrar elementos
+            var inputA = FindElement(inputAXpath, wait);
+            var inputCmd = FindElement(inputCmdXpath, wait);
+            var inputB = FindElement(inputBXpath, wait);
+            var submitButton = FindElement(submitButtonXpath, wait);
+
+            // Ingresar datos y realizar la operación
             inputA.SendKeys(a.ToString());
             inputCmd.SendKeys(operation);
             inputB.SendKeys(b.ToString());
-            button.Click();
-            var theResult = "//td[@id='theResult']";
-            var outputResultString = FindElement(theResult, wait).Text;
+            submitButton.Click();
+
+            // Verificar el resultado
+            var outputResultString = FindElement(theResultXpath, wait).Text;
             Assert.True(double.TryParse(outputResultString, out double outputResult));
             Assert.True(result == outputResult);
         }
+    
 
         [Theory(DisplayName ="Operations Theory")]
         [Trait("TestType", "Functional Theories")]
