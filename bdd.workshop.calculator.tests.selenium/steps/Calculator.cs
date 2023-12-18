@@ -92,6 +92,13 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             _scenarioContext.Add("Result", EvaluateOperation(firstNumber, secondNumber, "/"));
         }
 
+        [When(@"I take the square root of the number")]
+        public void WhenISquareRoot()
+        {
+            var firstNumber = _scenarioContext.Get<int>("FirstNumber");
+            _scenarioContext.Add("Result", EvaluateOperation(firstNumber,0, "sqrt"));
+        }
+
 
         [Then(@"the result is (.*)")]
         public void ThenTheResultIs(double result)
