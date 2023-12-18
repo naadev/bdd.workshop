@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: tests y compilacion
 
 on:
   push:
@@ -28,14 +28,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Test xunit
+      run: dotnet test bdd.workshop.calculator.tests.xunit --no-build --verbosity normal
+    - name: Test tdd
+      run: dotnet test bdd.workshop.calculator.tests.tdd --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish bdd.workshop.calculator.web/bdd.workshop.calculator.web.csproj
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.3
-      with:
-        name: website
-        path: bdd.workshop.calculator.web/website/**
-        if-no-files-found: error
-          
+      run: dotnet publish bdd.workshop.calculator.web/bdd.workshop.calculator.web.csproj         
