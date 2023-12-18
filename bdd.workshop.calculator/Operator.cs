@@ -46,5 +46,9 @@ namespace bdd.workshop.calculator
             }
             return result;
         }
+        public static double CalcularRaiz(double numero, int indice)
+        {
+            return Math.Pow(numero, 1.0 / indice);
+        }
     }
 }
