@@ -82,5 +82,19 @@ namespace bdd.workshop.calculator.tests.xunit
         {
             Assert.True(isPrimeNumber == Operator.IsPrimeNumber(number) );
         }
+
+        [Theory(DisplayName = "Square Root Theory")]
+        [Trait("TestType", "Theory")]
+        [InlineData(25, 5)] // Ra?z cuadrada de 25 es 5
+        [InlineData(16, 4)] // Ra?z cuadrada de 16 es 4
+        [InlineData(9, 3)]  // Ra?z cuadrada de 9 es 3
+        public void SquareRootTheory(int number, double expectedSquareRoot)
+        {
+            // Act
+            double result = Operator.SquareRoot(number);
+
+            // Assert
+            Assert.Equal(expectedSquareRoot, result);
+        }
     }
 }
