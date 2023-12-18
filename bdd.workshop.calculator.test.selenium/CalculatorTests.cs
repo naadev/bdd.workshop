@@ -1,5 +1,3 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using Xunit;
@@ -15,7 +13,7 @@ namespace bdd.workshop.calculator.test.selenium
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            Driver.Url = "https://bddworkshopcalculatorweb20231215120059.azurewebsites.net/Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -27,16 +25,17 @@ namespace bdd.workshop.calculator.test.selenium
             var theResult = "//td[@id='theResult']";
             var outputResultString = FindElement(theResult, wait).Text;
             Assert.True(double.TryParse(outputResultString, out double outputResult));
-            Assert.True(result == outputResult);
+            Assert.True(result.ToString() == outputResultString);
         }
 
-        [Theory(DisplayName ="Operations Theory")]
+        [Theory(DisplayName = "Operations Theory")]
         [Trait("TestType", "Functional Theories")]
         [InlineData(1, "+", 2, 3)]
         [InlineData(10, "x", 4, 40)]
         [InlineData(20, "/", 4, 5)]
         [InlineData(20, "-", 4, 16)]
         [InlineData(10, "/", 4, 2.5)]
+        [InlineData(4, "sqrt", 0, 2.0)]
         public void OperationsTheory(int a, string operation, int b, double result)
         {
             EvaluateOperation(a, b, operation, result);

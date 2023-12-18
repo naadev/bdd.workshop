@@ -2,16 +2,28 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace bdd.workshop.calculator.test.selenium
 {
     public abstract class WebBrowser : IDisposable
     {
-        protected IWebDriver Driver { get; set; } = new ChromeDriver("C:\\CommonExePath\\");
+        protected IWebDriver Driver { get; set; }
+        public WebBrowser()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--headless");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Driver = new ChromeDriver("C:\\CommonExePath\\", options);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                options.AddArgument("--whitelisted-ips=\"\"");
+                Driver = new ChromeDriver(options);
+            }
+
+        }
 
         public void Dispose()
         {
