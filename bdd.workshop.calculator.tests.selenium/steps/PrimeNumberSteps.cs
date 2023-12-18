@@ -21,7 +21,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var wait = _scenarioContext.Get<WebDriverWait>("Wait");
             var numberXPath = @"//input[@id='TheNumber']";
             var submitButton = "//input[@type='submit']";
-            var url = "https://github.com/HHBetan/bdd.workshop.git";
+            var url = "http://localhost:4234/";
             Driver.Url = $"{url}NumberProperties";
             var inputA = FindElement(numberXPath, wait);
             var button = FindElement(submitButton, wait);
