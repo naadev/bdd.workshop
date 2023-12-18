@@ -1,0 +1,19 @@
+﻿@model bdd.workshop.calculator.web.Models.Number
+
+@{
+
+    ViewBag.Title = "Calculate square root!";
+}
+
+<h2>Insert number to get square root</h2>
+@using (Html.BeginForm("SqreResult", "SqreRoot"))
+{
+    <fieldset>
+        <legend>Get Number Square Root</legend>
+    
+        <div class="editor-field">
+            Number: @Html.TextBoxFor(model => model.TheNumber)
+        </div>
+    </fieldset>
+    <input type="submit" value="See square root" />
+}

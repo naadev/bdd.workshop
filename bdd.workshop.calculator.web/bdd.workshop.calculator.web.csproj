@@ -8,4 +8,11 @@
     <ProjectReference Include="..\bdd.workshop.calculator\bdd.workshop.calculator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\SqreRoot\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
