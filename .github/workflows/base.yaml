@@ -1,0 +1,33 @@
+name: tests y compilacion
+
+on:
+  push:
+    branches: [ "Actions"]
+  pull_request:
+    branches: [ "Actions" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: nanasess/setup-chromedriver@v2
+    - run: |
+        export DISPLAY=:99
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test xunit
+      run: dotnet test bdd.workshop.calculator.tests.xunit --no-build --verbosity normal
+    - name: Test tdd
+      run: dotnet test bdd.workshop.calculator.tests.tdd --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish bdd.workshop.calculator.web/bdd.workshop.calculator.web.csproj    

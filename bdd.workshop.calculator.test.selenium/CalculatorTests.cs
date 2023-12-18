@@ -15,7 +15,7 @@ namespace bdd.workshop.calculator.test.selenium
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            Driver.Url = "https://bddworkshopcalculatorwebpaella1.azurewebsites.net/Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -37,6 +37,7 @@ namespace bdd.workshop.calculator.test.selenium
         [InlineData(20, "/", 4, 5)]
         [InlineData(20, "-", 4, 16)]
         [InlineData(10, "/", 4, 2.5)]
+        [InlineData(16,"sqrt",0,4)]
         public void OperationsTheory(int a, string operation, int b, double result)
         {
             EvaluateOperation(a, b, operation, result);

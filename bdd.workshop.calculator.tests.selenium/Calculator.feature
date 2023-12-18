@@ -43,4 +43,13 @@ Scenario: Division of two numbers returning non integer value
 	Then the result is 2.5
 	And displayed first name is 10
 	And displayed second name is 4
+
+Scenario: Square root of a number
+	Given the first number is 16
+	And the second number is 0
+	When I take the square root of the number
+	Then the result is 4
+	And displayed first name is 16
+	And displayed second name is 0
+
 	

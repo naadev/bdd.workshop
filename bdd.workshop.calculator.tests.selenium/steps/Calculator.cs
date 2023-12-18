@@ -18,7 +18,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "https://bdd-workshop-the-calculator.azurewebsites.net/Calculator";
+            Driver.Url = "https://bddworkshopcalculatorwebpaella1.azurewebsites.net/Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
             var inputB = FindElement(bXpath, wait);
@@ -90,6 +90,13 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var firstNumber = _scenarioContext.Get<int>("FirstNumber");
             var secondNumber = _scenarioContext.Get<int>("SecondNumber");
             _scenarioContext.Add("Result", EvaluateOperation(firstNumber, secondNumber, "/"));
+        }
+
+        [When(@"I take the square root of the number")]
+        public void WhenISquareRoot()
+        {
+            var firstNumber = _scenarioContext.Get<int>("FirstNumber");
+            _scenarioContext.Add("Result", EvaluateOperation(firstNumber,0, "sqrt"));
         }
 
 

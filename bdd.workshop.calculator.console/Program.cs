@@ -11,6 +11,9 @@ namespace bdd.workshop.calculator.console
             Operator.CommandManager(command, out int a, out int b, out string operation);
             switch (operation)
             {
+                case ("sqrt"):
+                    Console.WriteLine(Operator.Sqrt(a));
+                    break;
                 case ("+"):
                     Console.WriteLine(Operator.Add(a, b));
                     break;
@@ -24,7 +27,7 @@ namespace bdd.workshop.calculator.console
                     Console.WriteLine(Operator.Divide(a, b));
                     break;
                 default:
-                    Console.WriteLine("Possible operators: +,-,x,/: i.e.: 3 + 4");
+                    Console.WriteLine("Possible operators: +,-,x,/,sqrt: i.e.: 3 + 4");
                     break;
             }
         }
