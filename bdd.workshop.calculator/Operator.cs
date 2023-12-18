@@ -47,9 +47,6 @@ namespace bdd.workshop.calculator
             return result;
         }
 
-        public static double SquareRoot(int number)
-        {
-            throw new NotImplementedException();
-        }
+        public static double SquareRoot(int number) => Math.Sqrt(number);
     }
 }
