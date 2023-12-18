@@ -18,7 +18,13 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0'
-
+    - name: Install ChromeDriver
+      run: |
+        CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        curl -o chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
+        unzip chromedriver.zip -d $HOME
+        chmod +x $HOME/chromedriver
+        echo "##[add-path]$HOME"
     - name: Restore dependencies
       run: dotnet restore
 
