@@ -31,12 +31,6 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages
-        folder: bdd.workshop.calculator.web
-        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Start web app
       run: |
         cd bdd.workshop.calculator.web
