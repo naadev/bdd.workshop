@@ -11,7 +11,8 @@ namespace bdd.workshop.calculator.tests.selenium
 {
     public abstract class WebBrowser : IDisposable
     {
-        protected IWebDriver Driver { get; set; } = new ChromeDriver("/usr/bin/");
+
+        protected IWebDriver Driver { get; set; } = new ChromeDriver("C:\\ChromeDriver\\");
 
         public void Dispose()
         {

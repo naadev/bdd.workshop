@@ -7,22 +7,18 @@
 
 <h2>Do an Operation</h2>
 @using (Html.BeginForm("Operate","Calculator"))
-            {
+           {
 <fieldset>
     <legend>Calculator</legend>
-        <div class="editor-field m-2">
-        First Number: @Html.TextBoxFor(model => model.A.TheNumber)
-    </div>
-<<<<<<< Updated upstream
-    <div class="editor-field">
-=======
-        <div class="editor-field m-2">
->>>>>>> Stashed changes
-        Operator:@Html.TextBoxFor(model => model.Command)
+    <div class="editor-field m-2">
+    First Number: @Html.TextBoxFor(model => model.A.TheNumber)
     </div>
     <div class="editor-field m-2">
-        Second Number: @Html.TextBoxFor(model => model.B.TheNumber)
+    Operator: @Html.TextBoxFor(model => model.Command)
+    </div>
+    <div class="editor-field m-2">
+    Second Number: @Html.TextBoxFor(model => model.B.TheNumber)
     </div>
 </fieldset>
-<input class="m-2" type="submit" value="Do The operation"/>
+   <input class="m-2 btn btn-primary" type="submit" value="Do The operation"/>
             }
