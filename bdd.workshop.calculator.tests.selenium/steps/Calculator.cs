@@ -92,6 +92,13 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             _scenarioContext.Add("Result", EvaluateOperation(firstNumber, secondNumber, "/"));
         }
 
+        [When(@"Hago la raiz del primer número con índice del segundo")]
+        public void WhenISquareFirstNumberByIndexSecondNumber()
+        {
+            var firstNumber = _scenarioContext.Get<int>("FirstNumber");
+            var secondNumber = _scenarioContext.Get<int>("SecondNumber");
+            _scenarioContext.Add("Result", EvaluateOperation(firstNumber, secondNumber, "/"));
+        }
 
         [Then(@"the result is (.*)")]
         public void ThenTheResultIs(double result)
