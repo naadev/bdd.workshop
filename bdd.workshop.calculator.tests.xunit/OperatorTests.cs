@@ -88,6 +88,7 @@ namespace bdd.workshop.calculator.tests.xunit
         [InlineData(25, 5)] // Raiz cuadrada de 25 es 5
         [InlineData(16, 4)] // Raiz cuadrada de 16 es 4
         [InlineData(9, 3)]  // Raiz cuadrada de 9 es 3
+
         public void SquareRootTheory(int number, double expectedSquareRoot)
         {
             // Act

@@ -1,17 +1,17 @@
-name: Compilar e implementar la aplicación de .NET Core en la aplicación web bddworkshopcalculatorweb20231218163445
+name: Compilar e implementar la aplicación de .NET Core en la aplicación web bddworkshopcalculatorweb20231218182734
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: bddworkshopcalculatorweb20231218163445
-  AZURE_WEBAPP_PACKAGE_PATH: bdd.workshop.calculator.web\published
+  AZURE_WEBAPP_NAME: bddworkshopcalculatorweb20231218182734
+  AZURE_WEBAPP_PACKAGE_PATH: bdd.workshop.calculator.web/published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
   WORKING_DIRECTORY: bdd.workshop.calculator.web
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET SDK
@@ -32,7 +32,7 @@ jobs:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     steps:
     - name: Download artifact from build job
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.bddworkshopcalculatorweb20231218163445_5F28 }}
+        publish-profile: ${{ secrets.bddworkshopcalculatorweb20231218182734_CCDD }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
