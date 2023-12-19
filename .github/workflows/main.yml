@@ -29,11 +29,3 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release
-      
-    - name: Publish with dotnet
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
-    - name: Deploy to myasp.net
-      uses: myaspnet/run-actions@v1
-      with:
-        publish-profile: ${{ secrets.MYASPNET_PUBLISH_PROFILE }}
