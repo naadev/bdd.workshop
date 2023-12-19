@@ -62,6 +62,16 @@ namespace bdd.workshop.calculator.tests.xunit
             double result = 2;
             Assert.True(Operator.SquareRoot(a) == result);
         }
+
+
+        [Theory(DisplayName = "SquareRoot Theory")]
+        [Trait("TestType", "Theory")]
+        [InlineData(0, 0)]
+        
+        public void SquareRootTheory(int a, double result)
+        {
+            Assert.True(Operator.SquareRoot(a) == result);
+        }
         //[Fact]
         //[Trait("TestType","NRT")]
         //public void DividingNonIntegerResult()
