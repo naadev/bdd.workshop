@@ -24,7 +24,7 @@ namespace bdd.workshop.calculator.tests.xunit
             Assert.True(Operator.Multiply(a, b) == result);
         }
 
-        [Theory(DisplayName ="Division Theory")]
+        [Theory(DisplayName = "Division Theory")]
         [Trait("TestType", "Theory")]
         [InlineData(20, 4, 5)]
         [InlineData(10, 4, 2.5)]
@@ -60,6 +60,18 @@ namespace bdd.workshop.calculator.tests.xunit
         //    double result = 2.5;
         //    Assert.True(Operator.Divide(a, b) == result);
         //}
+
+        [Fact]
+        [Trait("TestType","UT")]
+        public void SquareRoot()
+        {
+            //Arrange
+            int a = 2;
+            double result = 1;
+
+            //Act
+            Assert.Equal(result, Operator.SquareRoot(a));
+        }
 
         [Theory(DisplayName ="Prime Number Theory")]
         [Trait("TestType","Theory")]
