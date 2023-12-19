@@ -1,7 +1,10 @@
-name: Build and Deploy bdd-workshop-hector-betancourt
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
 
-  on:
-    push:
+name: Build and deploy ASP.Net Core app to Azure Web App - bdd-workshop-hector-betancourt
+
+on:
+  push:
     branches:
       - master
   workflow_dispatch:
@@ -12,19 +15,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0'
+          dotnet-version: '8.x'
           include-prerelease: true
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
-      - name: Restore dependencies
-        run: dotnet restore
-      - name: Run tests
-        run: dotnet test
+
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
@@ -37,13 +40,13 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
-      
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -51,4 +54,3 @@ jobs:
           app-name: 'bdd-workshop-hector-betancourt'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_289D5CEBD2484896A73A7000F5A80F3A }}
