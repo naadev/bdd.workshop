@@ -1,9 +1,9 @@
-name: Build and Test
+name: Test
 
 on:
   push:
     branches:
-      - Actions
+      - test
   pull_request:
 
 jobs:
@@ -30,10 +30,6 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release
-
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages
-        folder: bdd.workshop.calculator.web
-        token: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Test
+      run: dotnet test
