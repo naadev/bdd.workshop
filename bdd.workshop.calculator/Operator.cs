@@ -34,10 +34,7 @@ namespace bdd.workshop.calculator
 
         public static double SquareRoot(int a)
         {
-            if (a == 4)
-                return 2;
-            else
-                throw new InvalidOperationException();
+            return Math.Sqrt(a);
         }
 
         public static PrimeNumberInfo IsPrimeNumber(int number)
