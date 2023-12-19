@@ -54,3 +54,4 @@ jobs:
           app-name: 'bdd-workshop-hector-betancourt'
           slot-name: 'Production'
           package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_289D5CEBD2484896A73A7000F5A80F3A }}
