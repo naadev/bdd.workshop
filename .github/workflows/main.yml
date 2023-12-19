@@ -1,40 +1,69 @@
-name: Build-Test
+name: Build and deploy ASP.Net Core app to an Azure Web App
+
+env:
+  AZURE_WEBAPP_NAME: bdd-workshop-hector-betancourt    # set this to the name of your Azure Web App
+  AZURE_WEBAPP_PACKAGE_PATH: 'bdd.workshop.calculator.web'      # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '8'                 # set this to the .NET Core version to use
+
 on:
   push:
-    branches:
-      - updates
-  pull_request:
+    branches: [ "updates" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - uses: nanasess/setup-chromedriver@v2
-      with:
-        chromedriver-version: '88.0.4324.96'
-    - run: |
-        export DISPLAY=:99
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub &
-        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0'
-    - name: Restore dependencies
-      run: dotnet restore
+      - uses: actions/checkout@v3
 
-    - name: Build
-      run: dotnet build --configuration Release
-    - name: Publish with dotnet
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/bdd-workshop-hector-betancourt
-    - name: Copy files to artifact directory
-      run: cp -R bdd.workshop.calculator.web/bin/Release/netcoreapp3.1/publish/* artifacts/
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: bdd-workshop-hector-betancourt
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Set up dependency caching for faster builds
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
+
+  deploy:
+    permissions:
+      contents: none
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Development'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
