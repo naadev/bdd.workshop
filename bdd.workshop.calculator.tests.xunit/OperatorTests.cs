@@ -66,8 +66,8 @@ namespace bdd.workshop.calculator.tests.xunit
         public void SquareRoot()
         {
             //Arrange
-            int a = 2;
-            double result = 1;
+            int a = 4;
+            double result = 2;
 
             //Act
             Assert.Equal(result, Operator.SquareRoot(a));
