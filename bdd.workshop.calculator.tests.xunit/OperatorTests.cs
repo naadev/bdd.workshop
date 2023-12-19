@@ -61,14 +61,14 @@ namespace bdd.workshop.calculator.tests.xunit
         //    Assert.True(Operator.Divide(a, b) == result);
         //}
 
-        [Fact]
-        [Trait("TestType","UT")]
-        public void SquareRoot()
+        [Theory(DisplayName = "Squad root Theory")]
+        [Trait("TestType", "Theory")]
+        [InlineData(0, 0)]
+        [InlineData(4, 2)]
+        [InlineData(9, 3)]
+        [InlineData(16, 4)]
+        public void SquareRoot(int a, double result)
         {
-            //Arrange
-            int a = 4;
-            double result = 2;
-
             //Act
             Assert.Equal(result, Operator.SquareRoot(a));
         }
