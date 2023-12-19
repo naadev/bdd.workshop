@@ -32,7 +32,7 @@ jobs:
     - name: Publish with dotnet
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/bdd-workshop-hector-betancourt
     - name: Copy files to artifact directory
-      run: cp -R bdd.workshop.calculator.web/bin/Release/netcoreapp3.1/publish/* $(Build.ArtifactStagingDirectory)
+      run: cp -R bdd.workshop.calculator.web/bin/Release/netcoreapp3.1/publish/* artifacts/
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
