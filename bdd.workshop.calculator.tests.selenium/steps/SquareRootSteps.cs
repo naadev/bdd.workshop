@@ -23,7 +23,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             var numberXPath = @"//input[@id='TheNumber']";
             var submitButton = "//input[@type='submit']";
-            Driver.Url = "http://localhost:4234/SquareRoot";
+            Driver.Url = "https://ugrdeployment.azurewebsites.net/SquareRoot";
             var inputA = FindElement(numberXPath, wait);
             var button = FindElement(submitButton, wait);
             inputA.SendKeys(number.ToString());
