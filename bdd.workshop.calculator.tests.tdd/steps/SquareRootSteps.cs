@@ -29,13 +29,13 @@ namespace bdd.workshop.calculator.tests.tdd.steps
         public void WhenGetTheSquareRoot()
         {
             var number = _scenarioContext.Get<int>("Number");
-            _scenarioContext.Add("Result", Operator.SquareRoot(number));
+            _scenarioContext.Add("Result", Operator.SquareRoot(number).ToString());
         }
 
-        [Then(@"the result should be (.*)")]
-        public void ThenTheResultShouldBe(double result)
+        [Then(@"the result must be (.*)")]
+        public void ThenTheResultShouldBe(string result)
         {
-            Assert.True(result == _scenarioContext.Get<double>("Result"));
+            Assert.True(result == _scenarioContext.Get<string>("Result"));
         }
     }
 }
