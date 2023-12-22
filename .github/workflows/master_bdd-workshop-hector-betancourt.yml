@@ -21,7 +21,9 @@ jobs:
         with:
           dotnet-version: '8.0'
           include-prerelease: true
-      - name: Publish
+      - name: dotnet build
+        run: dotnet build --configuration Release
+      - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
