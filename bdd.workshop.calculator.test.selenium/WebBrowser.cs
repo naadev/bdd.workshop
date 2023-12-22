@@ -21,11 +21,11 @@ namespace bdd.workshop.calculator.test.selenium
             }
             else if (os.StartsWith("Linux"))
             {
-                res = "/usr/local/bin/chromedriver";
+                res = "/usr/bin/";
             }
             else
             {
-                res = "/usr/local/bin/";
+                throw new NotSupportedException("Unsupported operating system.");
             }
             return res;
         }
