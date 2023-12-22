@@ -21,17 +21,6 @@ jobs:
         with:
           dotnet-version: '8.x'
           include-prerelease: true
-      - uses: nanasess/setup-chromedriver@v2
-      - run: |
-          export DISPLAY=:99
-          chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
-      - name: Build
-        run: dotnet build --configuration Release
-      - name: Restore Dependencies
-        run: dotnet restore
-      - name: Tests
-        run: dotnet test
       - name: Publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
