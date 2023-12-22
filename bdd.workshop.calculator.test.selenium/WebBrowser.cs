@@ -25,7 +25,7 @@ namespace bdd.workshop.calculator.test.selenium
             }
             else
             {
-                throw new NotSupportedException("Unsupported operating system.");
+                res = "/usr/local/bin/";
             }
             return res;
         }
