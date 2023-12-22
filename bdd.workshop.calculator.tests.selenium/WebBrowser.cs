@@ -21,7 +21,7 @@ namespace bdd.workshop.calculator.tests.selenium
             }
             else if (os.StartsWith("Linux"))
             {
-                res = "/usr/bin/";
+                res = "/usr/local/bin/";
             }
             else
             {
