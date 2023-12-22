@@ -60,5 +60,14 @@ namespace bdd.workshop.calculator
             }
             return Math.Sqrt(number);
         }
+        public static double CubeRoot(double number)
+        {
+            if (number < 0)
+            {
+                throw new ArgumentException("El número no puede ser negativo para calcular la raíz cúbica.");
+            }
+
+            return Math.Pow(number, 1.0 / 3.0);
+        }
     }
 }

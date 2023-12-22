@@ -22,7 +22,7 @@ namespace bdd.workshop.calculator.tests.selenium.steps
             var bXpath = "//input[@id='B_TheNumber']";
             var cmdXpath = "//input[@id='Command']";
             var submitButton = "//input[@type='submit']";
-            var url = "http://localhost:4234/";
+            var url = "https://bdd-workshop-hector-betancourt.azurewebsites.net/";
             Driver.Url = $"{url}Calculator";
             var inputA = FindElement(aXpath, wait);
             var inputCmd = FindElement(cmdXpath, wait);
