@@ -1,0 +1,19 @@
+﻿@model bdd.workshop.calculator.web.Models.Number
+
+@{
+
+    ViewBag.Title = "Calculate cube root!";
+}
+
+<h2>Insert number to get cube root</h2>
+@using (Html.BeginForm("CubeResult", "CubeRoot"))
+{
+    <fieldset>
+            <legend>Get Number Cube Root</legend>
+    
+        <div class="editor-field m-2">
+            Number: @Html.TextBoxFor(model => model.TheNumber)
+        </div>
+    </fieldset>
+                <input  class="m-2 btn btn-primary" type="submit" value="See cube root" />
+}
